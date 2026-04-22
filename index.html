@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>가짜 해킹 화면</title>
+<style>
+body{
+background:black;
+color:#00ff00;
+font-family:monospace;
+text-align:center;
+padding-top:80px;
+}
+button{
+font-size:28px;
+padding:15px 30px;
+background:#111;
+color:#00ff00;
+border:2px solid #00ff00;
+}
+#msg{
+margin-top:40px;
+font-size:32px;
+}
+</style>
+</head>
+<body>
+
+<h1>SECURE SYSTEM</h1>
+<button onclick="startHack()">접속 시작</button>
+<div id="msg">대기중...</div>
+
+<script>
+function beep(freq,time){
+let ctx = new (window.AudioContext || window.webkitAudioContext)();
+let osc = ctx.createOscillator();
+let gain = ctx.createGain();
+osc.type="square";
+osc.frequency.value=freq;
+osc.connect(gain);
+gain.connect(ctx.destination);
+osc.start();
+gain.gain.setValueAtTime(0.2,ctx.currentTime);
+gain.gain.exponentialRampToValueAtTime(0.001,ctx.currentTime+time);
+osc.stop(ctx.currentTime+time);
+}
+
+function startHack(){
+document.getElementById("msg").innerHTML="접속 중...";
+beep(300,0.2);
+
+setTimeout(()=>{
+document.getElementById("msg").innerHTML="보안 해제...";
+beep(500,0.2);
+},1000);
+
+setTimeout(()=>{
+document.getElementById("msg").innerHTML="데이터 다운로드...";
+beep(700,0.2);
+},2000);
+
+setTimeout(()=>{
+document.getElementById("msg").innerHTML="⚠ 해킹 성공!";
+beep(900,0.4);
+},3000);
+
+setTimeout(()=>{
+document.getElementById("msg").innerHTML="🤣 농담이야! 속았지?";
+beep(1200,0.5);
+},4500);
+}
+</script>
+
+</body>
+</html>
